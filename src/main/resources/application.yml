@@ -1,0 +1,11 @@
+server:
+  port: 9013
+  address: '[::]'
+spring:
+  application:
+    name: user-role-service
+  neo4j:
+    uri: bolt://localhost:7687/tisser
+    authentication:
+      username: neo4j
+      password: 6154277353
