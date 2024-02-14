@@ -10,7 +10,8 @@ import yps.systems.ai.model.UserRole;
 @Repository
 public interface IUserRoleRepository extends ReactiveNeo4jRepository<UserRole, Long> {
 
-    @Query("MATCH (u: user {id_user: $idUser}), (r: role {id_role: $idRole}) " +
+    @Query("MATCH (u: user {id_user: $idUser}) WITH u " +
+            "MATCH (r: role {id_role: $idRole}) " +
             "MERGE (u)-[:HAS_ROLE]->(r) " +
             "MERGE (r)-[:IS_ASSIGNED_TO]->(u)")
     Mono<Void> createUserRoleRelation(Long idUser, Long idRole);
